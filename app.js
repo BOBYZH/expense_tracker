@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 
 const exphbs = require('express-handlebars')
 
+app.use(express.urlencoded({ extended: true }))
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
@@ -33,7 +35,7 @@ app.get('/todos', (req, res) => {
 })
 
 app.get('/todos/new', (req, res) => {
-  res.send('Page of creating a Todo.')
+  return res.render('new')
 })
 
 app.get('/todos/:id', (req, res) => {
@@ -41,7 +43,14 @@ app.get('/todos/:id', (req, res) => {
 })
 
 app.post('/todos', (req, res) => {
-  res.send('Create a Todo')
+  const todo = new Todo({
+    name: req.body.name
+  })
+
+  todo.save(err => {
+    if (err) return console.error(err)
+    return res.redirect('/')
+  })
 })
 
 app.get('/todos/:id/edit', (req, res) => {
