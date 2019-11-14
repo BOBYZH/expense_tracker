@@ -9,24 +9,27 @@ app.set('view engine', 'handlebars')
 
 mongoose.connect('mongodb://localhost/todo', { useNewUrlParser: true, useUnifiedTopology: true })
 
-const db = mongoose.connection //已連線的資料庫
+const db = mongoose.connection // 已連線的資料庫
 
-db.on('error', () => { //on可觸發多次
+db.on('error', () => { // on可觸發多次
   console.log('mongodb error!')
 })
 
-db.once('open', () => { //once只觸發一次
+db.once('open', () => { // once只觸發一次
   console.log('mongodb connected!')
 })
 
 const Todo = require('./models/todo')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  Todo.find((err, todos) => {
+    if (err) return console.log(err)
+    return res.render('index', { todos: todos })
+  })
 })
 
 app.get('/todos', (req, res) => {
-  res.send('List all Todos.')
+  return res.redirect('/')
 })
 
 app.get('/todos/new', (req, res) => {
@@ -54,5 +57,5 @@ app.post('/todos/:id/delete', (req, res) => {
 })
 
 app.listen(3000, () => {
-  console.log("App is listening!")
+  console.log('App is listening!')
 })
