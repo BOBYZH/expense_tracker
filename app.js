@@ -2,13 +2,15 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-
 const exphbs = require('express-handlebars')
+const methodOverride = require('method-override')
 
 app.use(express.urlencoded({ extended: true }))
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+app.use(methodOverride('_method'))
 
 mongoose.connect('mongodb://localhost/todo', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -26,11 +28,11 @@ const Todo = require('./models/todo')
 
 app.get('/', (req, res) => {
   Todo.find({})
-  .sort({name: 'asc'})
-      .exec((err, todos) => {
-    if (err) return console.error(err)
-    return res.render('index', { todos: todos })
-       })
+    .sort({ name: 'asc' })
+    .exec((err, todos) => {
+      if (err) return console.error(err)
+      return res.render('index', { todos: todos })
+    })
 })
 
 app.get('/todos', (req, res) => {
@@ -70,7 +72,7 @@ app.get('/todos/:id/edit', (req, res) => {
   })
 })
 
-app.post('/todos/:id/edit', (req, res) => {
+app.put('/todos/:id', (req, res) => {
   Todo.findById(req.params.id, (err, todo) => {
     if (err) return console.error(err)
     todo.name = req.body.name
@@ -86,7 +88,7 @@ app.post('/todos/:id/edit', (req, res) => {
   })
 })
 
-app.post('/todos/:id/delete', (req, res) => {
+app.delete('/todos/:id/delete', (req, res) => {
   Todo.findById(req.params.id, (err, todo) => {
     if (err) return console.error(err)
     todo.remove(err => {
