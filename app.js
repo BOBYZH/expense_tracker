@@ -25,10 +25,12 @@ db.once('open', () => { // once只觸發一次
 const Todo = require('./models/todo')
 
 app.get('/', (req, res) => {
-  Todo.find((err, todos) => {
+  Todo.find({})
+  .sort({name: 'asc'})
+      .exec((err, todos) => {
     if (err) return console.error(err)
     return res.render('index', { todos: todos })
-  })
+       })
 })
 
 app.get('/todos', (req, res) => {
