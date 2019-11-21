@@ -4,6 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 app.use(express.urlencoded({ extended: true }))
 
@@ -11,6 +12,12 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(methodOverride('_method'))
+
+app.use(session({
+  secret: 'your secret key',
+  resave: false,
+  saveUninitialized: true,
+}))
 
 mongoose.connect('mongodb://localhost/todo', { useNewUrlParser: true, useUnifiedTopology: true })
 
