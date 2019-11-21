@@ -26,6 +26,7 @@ db.once('open', () => { // once只觸發一次
 
 app.use('/', require('./routes/home'))
 app.use('/todos', require('./routes/todo'))
+app.use('/users', require('./routes/user'))
 
 app.listen(3000, () => {
   console.log('App is listening!')
