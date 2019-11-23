@@ -25,8 +25,10 @@ app.use(passport.session())
 
 require('./config/passport')(passport)
 
+// get user info
 app.use((req, res, next) => {
   res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
   next()
 })
 
