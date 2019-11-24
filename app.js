@@ -1,5 +1,10 @@
 /* eslint-disable semi */
 const express = require('express')
+// check development environment
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config
+}
+
 const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
@@ -47,6 +52,7 @@ db.once('open', () => { // once只觸發一次
 app.use('/', require('./routes/home'))
 app.use('/todos', require('./routes/todo'))
 app.use('/users', require('./routes/user'))
+app.use('/auth', require('./routes/auths'))
 
 app.listen(3000, () => {
   console.log('App is listening!')
