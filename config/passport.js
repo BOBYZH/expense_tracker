@@ -35,7 +35,7 @@ module.exports = passport => {
       profileFields: ['email', 'displayName']
     }, (accessToken, refreshToken, profile, done) => {
       // find and create user
-      console.log(profile)
+      console.log()
       User.findOne({
         email: profile._json.email
       }).then(user => {
