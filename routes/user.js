@@ -22,7 +22,7 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body
-  let errors = []
+  const errors = []
 
   if (!name || !email || !password || !password2) {
     errors.push({ message: '所有欄位都是必填' })
@@ -41,9 +41,9 @@ router.post('/register', (req, res) => {
       password2
     })
   } else {
-  User.findOne({ email: email }).then(user => {
-    if (user) {
-      errors.push({ message: '這個 Email 已經註冊過了' })
+    User.findOne({ email: email }).then(user => {
+      if (user) {
+        errors.push({ message: '這個 Email 已經註冊過了' })
         res.render('register', {
           errors,
           name,

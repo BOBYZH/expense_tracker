@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const Todo = require('../models/todo')
+const Record = require('../models/record')
 
 const { authenticated } = require('../config/auth')
 
 router.get('/', authenticated, (req, res) => {
-  Todo.find({ userId: req.user._id })
+  Record.find({ userId: req.user._id })
     .sort({ name: 'asc' })
-    .exec((err, todos) => {
+    .exec((err, records) => {
       if (err) return console.error(err)
-      return res.render('index', { todos: todos })
+      return res.render('index', { todos: records  })
     })
 })
 

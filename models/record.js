@@ -13,10 +13,11 @@ const recordSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
   amount: {
     type: Number,
     required: true,
+    validate: {
       validator: validator.isCurrency,
       message: '{VALUE} is not a valid amount',
       isAsync: false
@@ -25,6 +26,7 @@ const recordSchema = new Schema({
   totalAmount: {
     type: Number,
     required: true,
+    validate: {
       validator: validator.isCurrency,
       message: '{VALUE} is not a valid total amount',
       isAsync: false
@@ -38,4 +40,4 @@ const recordSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Record', todoSchema)
+module.exports = mongoose.model('Record', recordSchema)

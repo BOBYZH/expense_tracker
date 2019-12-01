@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const Todo = require('../models/todo')
+const Record = require('../models/record')
 
 const { authenticated } = require('../config/auth')
 
 router.get('/', authenticated, (req, res) => {
-  return res.send('List all Todo')
+  return res.send('List all record')
 })
 
 router.get('/new', authenticated, (req, res) => {
@@ -13,55 +13,55 @@ router.get('/new', authenticated, (req, res) => {
 })
 
 router.get('/:id', authenticated, (req, res) => {
-  Todo.findOne({ _id: req.params.id, userId: req.user._id }, (err, todo) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
-    return res.render('detail', { todo })
+    return res.render('detail', { record: todo })
   })
 })
 
 router.post('/', authenticated, (req, res) => {
 //  // create = new schema + save
-  const todo = new Todo({
+  const record = new Record({
     name: req.body.name,
     userId: req.user._id
   })
 
-  todo.save(err => {
+  record.save(err => {
     if (err) return console.error(err)
     return res.redirect('/')
 
-    //    Todo.create({name: req.body.name})
+    //    record.create({name: req.body.name})
     //    res.redirect('/')
   })
 })
 
 router.get('/:id/edit', authenticated, (req, res) => {
-  Todo.findOne({ _id: req.params.id, userId: req.user._id }, (err, todo) => {
+  record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
-    return res.render('edit', { todo })
+    return res.render('edit', { record: todo })
   })
 })
 
 router.put('/:id', authenticated, (req, res) => {
-  Todo.findOne({ _id: req.params.id, userId: req.user._id }, (err, todo) => {
+  record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
-    todo.name = req.body.name
+    record.name = req.body.name
     if (req.body.done === 'on') {
-      todo.done = true
+      record.done = true
     } else {
-      todo.done = false
+      record.done = false
     }
-    todo.save(err => {
+    record.save(err => {
       if (err) return console.error(err)
-      return res.redirect(`/todos/${req.params.id}`)
+      return res.redirect(`/records/${req.params.id}`)
     })
   })
 })
 
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Todo.findOne({ _id: req.params.id, userId: req.user._id }, (err, todo) => {
+  record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
-    todo.remove(err => {
+    record.remove(err => {
       if (err) return console.error(err)
       return res.redirect('/')
     })

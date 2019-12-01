@@ -1,6 +1,4 @@
-/* eslint-disable semi */
 const express = require('express')
-// check development environment
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -43,7 +41,7 @@ app.use((req, res, next) => {
   next()
 })
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/todo', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -60,7 +58,7 @@ db.once('open', () => { // once只觸發一次
 })
 
 app.use('/', require('./routes/home'))
-app.use('/todos', require('./routes/todo'))
+app.use('/records', require('./routes/record'))
 app.use('/users', require('./routes/user'))
 app.use('/auth', require('./routes/auths'))
 
