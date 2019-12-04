@@ -8,10 +8,10 @@
     <option value="/filter?order=asc&filter=others">其他</option>
   </select>
   <h5 class="p-1 w-75 mx-auto">總金額：</h5>
-  <div class="total-amount text-right w-75 mx-auto" style="color: coral; font-size: 70px;">0</div>  
+  <div id="total-amount" class="text-right w-75 mx-auto" style="color: coral; font-size: 70px;">0</div>  
 </div>
 <div class="list-group records">
-<table class="table table-striped">
+<table class="table table-striped table-borderless">
     <tbody>
       {{#each records}}
       <tr class="record">
@@ -19,16 +19,15 @@
           <div class="category pt-3">{{this.category}}</div>
         </td>
         <td>
-          <div class="name">
-            <h5>{{this.name}}</h5>
-            <small>{{this.date}}</small>
+          <div class="pt-2">
+            <h5 class="name">{{this.name}}</h5>
+            <small class="date">{{this.date}}</small>
           </div>
         </td>
-        <td class="cost align-middle">{{this.amount}}</td>
-        <td class="d-flex justify-content-end">
+        <td class="align-middle amount">{{this.amount}}</td>
+        <td class="d-flex justify-content-end table-light">
           <a href="/records/{{this.id}}/edit" class="btn btn-link text-dark pt-3">修改</a>
-          <form action="/records/{{this.id}}?_method=DELETE" method="POST" style="display: inline-block;"
-            onsubmit="confirm('確定刪除？')">
+          <form action="/records/{{this.id}}?_method=DELETE" method="POST" style="display: inline-block;" onsubmit="if(confirm('確定刪除？')) return true; else return false">
             <button type="submit" class="btn btn-link text-danger pt-3">刪除</button>
           </form>
         </td>

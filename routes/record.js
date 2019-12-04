@@ -26,7 +26,7 @@ router.get('/new', authenticated, (req, res) => {
 })
 
 router.post('/', authenticated, (req, res) => {
-  const record = new Record({    
+  const record = new Record({
     name: req.body.name,
     category: req.body.category,
     date: req.body.date,
@@ -49,13 +49,13 @@ router.get('/:id/edit', authenticated, (req, res) => {
 router.put('/:id', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
-      record.name = req.body.name
-      record.category = req.body.category
-      record.date = req.body.date
-      record.amount = req.body.amount
+    record.name = req.body.name
+    record.category = req.body.category
+    record.date = req.body.date
+    record.amount = req.body.amount
     record.save(err => {
       if (err) return console.error(err)
-      return res.redirect(`/`)
+      return res.redirect('/')
     })
   })
 })

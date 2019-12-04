@@ -13,9 +13,9 @@ const recordSchema = new Schema({
   date: {
     type: String,
     required: true,
-     validate: {
+    validate: {
       validator: function (i) {
-        return /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(i);
+        return /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(i)
       },
       message: '{VALUE} is not a valid date',
       isAsync: false
@@ -25,7 +25,7 @@ const recordSchema = new Schema({
     type: Number,
     min: 0,
     multipleOf: 1,
-    required: true,
+    required: true
   },
   userId: {
     type: Schema.Types.ObjectId,
