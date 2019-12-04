@@ -8,26 +8,33 @@
     <option value="/filter?order=asc&filter=others">其他</option>
   </select>
   <h5 class="p-1 w-75 mx-auto">總金額：</h5>
-  <div class="total-amount text-right w-75 mx-auto" style="color: coral; font-size: 70px;">0</div>
-  
+  <div class="total-amount text-right w-75 mx-auto" style="color: coral; font-size: 70px;">0</div>  
 </div>
-<ul class="list-group">
-  {{#each todos}}
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-auto mr-auto">
-        <input style="vertical-align: middle;" type="checkbox" name="done" {{#if this.done }} checked{{/if}} />
-        <h4 style="display: inline;vertical-align: middle;">{{{this.name}}}</h4>
-      </div>
-      <div class="col-auto">
-        <a href="/records/{{{this.id}}}" class="btn btn-secondary">detail</a>
-        <a href="/records/{{{this.id}}}/edit" class="btn btn-success">edit</a>
-        <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="post" style="display:inline">
-          <button type="submit" class="btn btn-danger">delete</button>
-        </form>
-      </div>
-    </div>
-  </li>
-  {{/each}}
+<div class="list-group records">
+<table class="table table-striped">
+    <tbody>
+      {{#each records}}
+      <tr class="record">
+        <td>
+          <div class="category pt-3">{{this.category}}</div>
+        </td>
+        <td>
+          <div class="name">
+            <h5>{{this.name}}</h5>
+            <small>{{this.date}}</small>
+          </div>
+        </td>
+        <td class="cost align-middle">{{this.amount}}</td>
+        <td class="d-flex justify-content-end">
+          <a href="/record/{{this.id}}/edit" class="btn btn-link text-dark pt-3">修改</a>
+          <form action="/record/{{this.id}}?_method=DELETE" method="POST" style="display: inline-block;"
+            onsubmit="confirm('確定刪除？')">
+            <button type="submit" class="btn btn-link text-danger pt-3">刪除</button>
+          </form>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
   <a href="/records/new" class="btn btn-outline-dark text-white w-50 mx-auto" style="background-color: coral;">新增支出</a>
-</ul>
+</div>
