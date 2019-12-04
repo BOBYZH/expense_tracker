@@ -12,16 +12,16 @@ router.get('/new', authenticated, (req, res) => {
   // adept Adam Beer's JS code from: https://teamtreehouse.com/community/html-input-date-field-how-to-set-default-value-to-todays-date
   let date = new Date()
   let dd = date.getDate()
-  let mm = date.getMonth() + 1 //January is 0!
-  let yyyy = date.getFullYear()
+  let mm = date.getMonth() + 1 // January is 0!
+  const yyyy = date.getFullYear()
   if (dd < 10) {
-      dd = '0'+dd
-  } 
+    dd = '0' + dd
+  }
   if (mm < 10) {
-      mm = '0'+mm
+    mm = '0' + mm
   }
   date = yyyy + '-' + mm + '-' + dd
-//  console.log(date)
+  //  console.log(date)
   return res.render('new', { date })
 })
 
