@@ -15,16 +15,16 @@
     <tbody>
       {{#each records}}
       <tr class="record">
-        <td>
-          <div class="category pt-3">{{this.category}}</div>
+        <td class="pt-3 pl-3">
+          <div class="category">{{this.category}}</div>
         </td>
-        <td>
-          <div class="pt-3 pr-5">
+        <td class="pr-5">
+          <div class="pt-2 pr-5">
             <h5 class="name">{{this.name}}</h5>
             <small class="date">{{this.date}}</small>
           </div>
         </td>
-        <td class="align-middle amount">{{this.amount}}</td>
+        <td class="align-middle amount pr-2">{{this.amount}}</td>
         <td class="justify-content-end table-light table-borderless">
           <a href="/records/{{this.id}}/edit" class="btn btn-link text-dark pt-3">修改</a>
           <form action="/records/{{this.id}}?_method=DELETE" method="POST" style="display: inline-block;" onsubmit="if(confirm('確定刪除？')) return true; else return false">

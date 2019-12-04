@@ -37,7 +37,19 @@ crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 crossorigin="anonymous"></script>
   <script>
-    (function changeCategoryIcon() {
+     function showTotalAmount() {
+      const totalAmount = document.querySelector('#total-amount')
+      console.log(totalAmount)
+      const amounts = document.querySelectorAll('.amount')
+      console.log(amounts)
+      let total = 0
+      for (let amount of amounts) {
+        total += parseInt(amount.innerHTML)
+      }
+      totalAmount.innerHTML = total
+    }
+    
+    function changeCategoryIcon() {
       const category = document.querySelectorAll('.category')
       for (let el of category) {
         switch (el.innerHTML) {
@@ -53,16 +65,14 @@ crossorigin="anonymous"></script>
           case 'diet':
             el.innerHTML = `<i class="pl-3 h1 fas fa-utensils"></i>`
             break
-          case 'other':
+          case 'others':
             el.innerHTML = `<i class="pl-3 h1 fas fa-pen"></i>`
             break
         }
       }
-    })()
-    
-    (function showTotalAmount() {
-      
-    })()
+    }
+    showTotalAmount()
+    changeCategoryIcon()
   </script>
 </body>
 
