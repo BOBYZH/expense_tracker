@@ -1,4 +1,4 @@
-# Expense tracker v1.0 (我的餐廳清單，第一版)
+# Expense tracker v1.0 (家庭記帳本，第一版)
 
 ### ALPHA Camp 學期三作業
 (老爸的私房錢 （又名【廣志の私帳】）)
