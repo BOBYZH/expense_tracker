@@ -13,4 +13,15 @@ router.get('/', authenticated, (req, res) => {
     })
 })
 
+router.get('/filter', authenticated, (req, res) => {
+  const order = req.query.order
+  const category = req.query.category
+  const sortObject = { category: order }
+  Record.find({ category: category, userId: req.user._id })
+    .sort(sortObject)
+    .exec((err, records) => {
+      if (err) return res.sendStatus(500)
+      return res.render('index', { records })
+    })
+})
 module.exports = router

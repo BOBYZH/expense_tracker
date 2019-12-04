@@ -1,11 +1,11 @@
 <div class="records">
-  <select class="w-75 mx-auto p-1" onchange="window.location.href=this.value;" style="display: block;" disabled>
-    <option selected>類別</option>
-    <option value="/filter?order=asc&filter=domestic">家居物業</option>
-    <option value="/filter?order=asc&filter=traffic">交通出行</option>
-    <option value="/filter?order=asc&filter=recreation">休閒娛樂</option>
-    <option value="/filter?order=asc&filter=diet">餐飲食品</option>
-    <option value="/filter?order=asc&filter=others">其他</option>
+  <select class="w-75 mx-auto p-1" onchange="window.location.href=this.value;" style="display: block;">
+    <option disabled selected value>類別</option>
+    <option value="/filter?order=asc&category=domestic">家居物業</option>
+    <option value="/filter?order=asc&category=traffic">交通出行</option>
+    <option value="/filter?order=asc&category=recreation">休閒娛樂</option>
+    <option value="/filter?order=asc&category=diet">餐飲食品</option>
+    <option value="/filter?order=asc&category=others">其他</option>
   </select>
   <h5 class="p-1 w-75 mx-auto">總金額：</h5>
   <div id="total-amount" class="text-right w-75 mx-auto" style="color: coral; font-size: 70px;">0</div>  
