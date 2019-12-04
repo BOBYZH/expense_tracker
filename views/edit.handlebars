@@ -1,13 +1,40 @@
-<form action="records/{{{record.id}}}?_method=PUT" method="POST">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <div class="input-group-text">
-        <input type="checkbox" name="done" {{#if todo.done }} checked{{/if}} />
-      </div>
+<form action="records/{{{record.id}}}?_method=PUT" method="POST" class="row">
+  <div class="container">
+    <div class="w-100 mx-auto row my-3">
+      <div class="col-4 " style="font-size: 10px;"p>*</sup>必填欄位</div>
+      <div class="col-8 text-center">請修改你的支出</div>
     </div>
-    <input type="text" placeholder="name" name="name" value="{{{todo.name}}}" class="form-control">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-success">Edit</button>
+      
+    <div class="w-100 mx-auto p-2 row my-3">
+      <div class="col-4">名稱<sup>*</sup>：</div>
+      <input class="col-8 form-control border border-dark" type="text" name="name" value="{{{record.name}}}" required>
+    </div>
+              
+    <div class="w-100 mx-auto p-2 row my-3">
+      <div class="col-4">日期<sup>*</sup>：</div>
+        <input class="col-8 form-control border border-dark" type="date" name="date" value="{{record.date}}" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+    </div>
+              
+    <div class="w-100 mx-auto p-2 row my-3">
+      <div class="col-4">類別<sup>*</sup>：</div>
+      <select class="col-8 form-control border border-dark" name="category" value="{{record.category}}" required>
+        <option selected>Select</option>
+        <option value="domestic">家居物業</option>
+        <option value="traffic">交通出行</option>
+        <option value="recreation">休閒娛樂</option>
+        <option value="diet">餐飲食品</option>
+        <option value="others">其他</option>
+      </select>
+    </div>
+              
+    <div class="w-100 mx-auto p-2 row my-3">
+      <div class="col-4">金額<sup>*</sup>：</div>
+      <input class="col-8 form-control border border-dark" type="number" step="1" min="0" name="amount" value="{{record.amount}}" required>
+    </div>
+    
+    <div class="w-100 mx-auto p-2 row ">
+      <div class="col-4"></div>
+      <button type="submit" class="btn btn-outline-dark border-dark col-8">送出</button>
     </div>
   </div>
-</form>
+</form> 
