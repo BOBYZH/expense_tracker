@@ -16,21 +16,7 @@ const recordSchema = new Schema({
   },
   amount: {
     type: Number,
-    required: true,
-    validate: {
-      validator: validator.isCurrency,
-      message: '{VALUE} is not a valid amount',
-      isAsync: false
-    }
-  },
-  totalAmount: {
-    type: Number,
-    required: true,
-    validate: {
-      validator: validator.isCurrency,
-      message: '{VALUE} is not a valid total amount',
-      isAsync: false
-    }
+    required: true
   },
   userId: {
     type: Schema.Types.ObjectId,

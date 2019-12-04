@@ -36,6 +36,9 @@ router.post('/', authenticated, (req, res) => {
 //  // create = new schema + save
   const record = new Record({
     name: req.body.name,
+    category: req.body.category,
+    date: req.body.date,
+    amount: req.body.amount,
     userId: req.user._id
   })
 
