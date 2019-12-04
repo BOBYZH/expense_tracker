@@ -4,15 +4,14 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
 const User = require('../models/user')
-
 module.exports = passport => {
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
       User.findOne({
         email: email
       }).then(user => {
         if (!user) {
-          return done(null, false, { message: 'That email is not registered' })
+          return done(null, false, req.flash('warning_msg', '該地址尚未註冊帳號'))
         }
 
         bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -20,7 +19,7 @@ module.exports = passport => {
           if (isMatch) {
             return done(null, user)
           } else {
-            return done(null, false, { message: 'Email or Password incorrect' })
+            return done(null, false, req.flash('warning_msg', '密碼錯誤'))
           }
         })
       })
@@ -34,7 +33,6 @@ module.exports = passport => {
       callbackURL: process.env.FACEBOOK_CALLBACK,
       profileFields: ['email', 'displayName']
     }, (accessToken, refreshToken, profile, done) => {
-      // find and create user
       console.log(profile)
       User.findOne({
         email: profile._json.email
