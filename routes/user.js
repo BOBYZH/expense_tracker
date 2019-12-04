@@ -11,7 +11,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body
   if (!email || !password) {
-    req.flash('warning_msg', '所有欄位都是必填' )
+    req.flash('warning_msg', '所有欄位都是必填')
   }
 
   passport.authenticate('local', {
