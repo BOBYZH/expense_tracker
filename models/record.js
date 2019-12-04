@@ -11,12 +11,21 @@ const recordSchema = new Schema({
     required: true
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: true,
+     validate: {
+      validator: function (i) {
+        return /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(i);
+      },
+      message: '{VALUE} is not a valid date',
+      isAsync: false
+    }
   },
   amount: {
     type: Number,
-    required: true
+    min: 0,
+    multipleOf: 1,
+    required: true,
   },
   userId: {
     type: Schema.Types.ObjectId,

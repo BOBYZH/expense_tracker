@@ -1,4 +1,4 @@
-<form action="records/{{{record.id}}}?_method=PUT" method="POST" class="row">
+<form action="/records/{{{record.id}}}?_method=PUT" method="POST" class="row">
   <div class="container">
     <div class="w-100 mx-auto row my-3">
       <div class="col-4 " style="font-size: 10px;"p>*</sup>必填欄位</div>
@@ -18,7 +18,7 @@
     <div class="w-100 mx-auto p-2 row my-3">
       <div class="col-4">類別<sup>*</sup>：</div>
       <select class="col-8 form-control border border-dark" name="category" value="{{record.category}}" required>
-        <option selected>Select</option>
+        <option disabled selected value>請選擇</option>
         <option value="domestic">家居物業</option>
         <option value="traffic">交通出行</option>
         <option value="recreation">休閒娛樂</option>
