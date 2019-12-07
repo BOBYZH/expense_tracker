@@ -2,7 +2,7 @@
 
 ### ALPHA Camp 學期三作業
 (老爸的私房錢 （又名【廣志の私帳】）=> 進階挑戰：老爸的私房錢升級)
-免安裝預覽連結：[https://expense-tracker-practice.herokuapp.com/](https://expense-tracker-practice.herokuapp.com/)
+- 免安裝預覽連結：[https://expense-tracker-practice.herokuapp.com/](https://expense-tracker-practice.herokuapp.com/)
 
 ## 如何使用：
 0. 至少先在電腦上裝好Node.js、mongoDB Community Edition([依作業系統版本對照說明操作](https://docs.mongodb.com/manual/administration/install-community/))
@@ -27,17 +27,17 @@ npm run seeder
 | ------| -------------------| ---------| --------------------|
 | user1 | user1@example.com  | 12345678 | id #1, #2, #3 號記帳 |
 | user2 | user2@example.com  | 12345678 | id #4, #5, #6 號記帳 |
-6. 若要測試Faceboo登入功能，需到[Facebook for Developers](https://developers.facebook.com/)建立應用程式，
-在本專案根目錄依據".env.template"內容格式，新增".env"檔案(可使用終端機指令)，
+6. 若要測試Faceboo登入功能，需到[Facebook for Developers](https://developers.facebook.com/)建立應用程式
+7.在本專案根目錄依據".env.template"內容格式，新增".env"檔案(可使用終端機指令)，
 ```
 cp .env.template .env
 ```
 並在.env填入Facebook應用程式編號、應用程式密鑰
-7. 執行本專案：
+8. 執行本專案：
 ```
 npm run dev
 ```
-8. 開啟預覽連結
+9. 開啟預覽連結
 - 若是在本機操作，於瀏覽器網址列輸入[http://localhost:3000](http://localhost:3000)；
 - 若使用虛擬主機，則須配合主機服務設定另用網址
 
