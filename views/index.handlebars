@@ -1,30 +1,28 @@
-<div class="records">
+<div class="selects">
   <div class="selects w-75 mx-auto" style="display: block;">
     <select class="mx-auto p-1" onchange="window.location.href=this.value;" style="display: inline-block; width: 49%;">
       <option disabled selected value>月份</option>
-      <option value="/filter?month=01">一月</option>
-      <option value="/filter?month=02">二月</option>
-      <option value="/filter?month=03">三月</option>
-      <option value="/filter?month=04">四月</option>
-      <option value="/filter?month=05">五月</option>
-      <option value="/filter?month=06">六月</option>
-      <option value="/filter?month=07">七月</option>
-      <option value="/filter?month=08">八月</option>
-      <option value="/filter?month=09">九月</option>
-      <option value="/filter?month=10">十月</option>
-      <option value="/filter?month=11">十一月</option>
-      <option value="/filter?month=12">十二月</option>
-      <option value="/">全部</option>
+      <option value="/filter?month=01&category={{category}}">一月</option>
+      <option value="/filter?month=02&category={{category}}">二月</option>
+      <option value="/filter?month=03&category={{category}}">三月</option>
+      <option value="/filter?month=04&category={{category}}">四月</option>
+      <option value="/filter?month=05&category={{category}}">五月</option>
+      <option value="/filter?month=06&category={{category}}">六月</option>
+      <option value="/filter?month=07&category={{category}}">七月</option>
+      <option value="/filter?month=08&category={{category}}">八月</option>
+      <option value="/filter?month=09&category={{category}}">九月</option>
+      <option value="/filter?month=10&category={{category}}">十月</option>
+      <option value="/filter?month=11&category={{category}}">十一月</option>
+      <option value="/filter?month=12&category={{category}}">十二月</option>
     </select>
   
     <select class="mx-auto p-1 float-right" onchange="window.location.href=this.value;" style="display: inline-block; width: 49%;">
       <option disabled selected value="/">類別</option>
-      <option value="/filter?category=domestic">家居物業</option>
-      <option value="/filter?category=traffic">交通出行</option>
-      <option value="/filter?category=recreation">休閒娛樂</option>
-      <option value="/filter?category=diet">餐飲食品</option>
-      <option value="/filter?category=others">其他</option>
-      <option value="/">全部</option>
+      <option value="/filter?month={{month}}&category=domestic">家居物業</option>
+      <option value="/filter?month={{month}}&category=traffic">交通出行</option>
+      <option value="/filter?month={{month}}&category=recreation">休閒娛樂</option>
+      <option value="/filter?month={{month}}&category=diet">餐飲食品</option>
+      <option value="/filter?month={{month}}&category=others">其他</option>
     </select>
   </div>
   <h5 class="p-1 w-75 mx-auto">總金額：</h5>
@@ -35,16 +33,16 @@
     <tbody>
       {{#each records}}
       <tr class="record">
-        <td class="pt-4 pl-3">
+        <td class="align-middle pl-3">
           <div class="category">{{this.category}}</div>
         </td>
-        <td class="pr-4">
-          <div class="pt-2 pr-5">
+        <td class="align-middle">
+          <div class="item">
             <h5 class="name">{{this.name}}</h5>
             <small class="date">{{this.date}}</small>
           </div>
         </td>
-        <td class="pt-4">
+        <td class="align-middle">
           <div class="merchant">{{this.merchant}}</div>
         </td>
         <td class="align-middle amount pr-2">{{this.amount}}</td>
@@ -58,5 +56,8 @@
       {{/each}}
     </tbody>
   </table>
-  <a href="/records/new" class="btn btn-outline-dark text-white w-50 mx-auto" style="background-color: coral;">新增支出</a>
+  <div class="w-75 mx-auto">
+    <a href="/" class="btn btn-outline-dark text-white w-25 d-inline-block float-right" style="background-color: coral;">全部顯示</a>
+    <a href="/records/new" class="btn btn-outline-dark text-white w-50 d-inline-block float-right mr-5" style="background-color: coral;">新增支出</a>    
+  </div>
 </div>

@@ -5,7 +5,8 @@
       "name": "吃中東美食",
       "category": "diet",
       "date": "2019-10-03",
-      "amount": 375
+      "amount": 375,
+      "merchant": "沙巴巴中東美食"
     },
     {
       "id": 2,
@@ -26,7 +27,8 @@
       "name": "買新書桌",
       "category": "domestic",
       "date": "2018-12-31",
-      "amount": 4800
+      "amount": 4800,
+      "merchant": "宜家家居新店店"
     },
     {
       "id": 5,
@@ -37,10 +39,11 @@
     },
     {
       "id": 6,
-      "name": "到京華城看黑魔女2",
+      "name": "看黑魔女2",
       "category": "recreation",
       "date": "2019-10-17",
-      "amount": 250
+      "amount": 250,
+      "merchant": "京華城喜滿客影城"
     }
   ]
 }

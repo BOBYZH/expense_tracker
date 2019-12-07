@@ -30,6 +30,7 @@ db.once('open', () => {
               date: records[j].date,
               month: records[j].date.substring(5, 7),
               amount: records[j].amount,
+              merchant: records[j].merchant,
               userId: user._id
             })
           }

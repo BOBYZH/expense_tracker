@@ -18,9 +18,9 @@ router.get('/filter', authenticated, (req, res) => {
   const month = req.query.month
   console.log(category, month)
   let querys = {}
-  if (month === undefined) {
+  if (month === "") {
     querys = { category: category, userId: req.user._id }
-  } else if (category === undefined) {
+  } else if (category === "") {
     querys = { month: month, userId: req.user._id }
   } else {
     querys = { category: category, month: month, userId: req.user._id }
@@ -29,7 +29,7 @@ router.get('/filter', authenticated, (req, res) => {
     .sort({ date: 'desc' })
     .exec((err, records) => {
       if (err) return res.sendStatus(500)
-      return res.render('index', { records })
+      return res.render('index', { records, month, category })
     })
 })
 module.exports = router
