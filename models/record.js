@@ -21,11 +21,26 @@ const recordSchema = new Schema({
       isAsync: false
     }
   },
+  month: {
+    type: String,
+    required: true,
+    validate: {
+      validator: function (i) {
+        return /[0-9]{2}/.test(i)
+      },
+      message: '{VALUE} is not a valid month',
+      isAsync: false
+    }
+  },
   amount: {
     type: Number,
     min: 0,
     multipleOf: 1,
     required: true
+  },
+  merchant: {
+    type: String,
+    required: false
   },
   userId: {
     type: Schema.Types.ObjectId,

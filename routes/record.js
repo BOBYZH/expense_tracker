@@ -30,7 +30,9 @@ router.post('/', authenticated, (req, res) => {
     name: req.body.name,
     category: req.body.category,
     date: req.body.date,
+    month: req.body.date.substring(5, 7),
     amount: req.body.amount,
+    merchant: req.body.merchant,
     userId: req.user._id
   })
   record.save(err => {
@@ -52,7 +54,9 @@ router.put('/:id', authenticated, (req, res) => {
     record.name = req.body.name
     record.category = req.body.category
     record.date = req.body.date
+    record.month = req.body.date.substring(5, 7)
     record.amount = req.body.amount
+    record.merchant = req.body.merchant
     record.save(err => {
       if (err) return console.error(err)
       return res.redirect('/')

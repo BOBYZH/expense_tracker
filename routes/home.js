@@ -14,11 +14,19 @@ router.get('/', authenticated, (req, res) => {
 })
 
 router.get('/filter', authenticated, (req, res) => {
-  const order = req.query.order
   const category = req.query.category
-  const sortObject = { category: order }
-  Record.find({ category: category, userId: req.user._id })
-    .sort(sortObject)
+  const month = req.query.month
+  console.log(category, month)
+  let querys = {}
+  if (month === undefined) {
+    querys = { category: category, userId: req.user._id }
+  } else if (category === undefined) {
+    querys = { month: month, userId: req.user._id }
+  } else {
+    querys = { category: category, month: month, userId: req.user._id }
+  }
+  Record.find(querys)
+    .sort({ date: 'desc' })
     .exec((err, records) => {
       if (err) return res.sendStatus(500)
       return res.render('index', { records })

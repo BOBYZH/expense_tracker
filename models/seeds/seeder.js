@@ -28,6 +28,7 @@ db.once('open', () => {
               name: records[j].name,
               category: records[j].category,
               date: records[j].date,
+              month: records[j].date.substring(5, 7),
               amount: records[j].amount,
               userId: user._id
             })
