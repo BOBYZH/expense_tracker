@@ -43,8 +43,19 @@ router.post('/', authenticated, (req, res) => {
 
 router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
+    let date = new Date()
+    let dd = date.getDate()
+    let mm = date.getMonth() + 1 // January is 0!
+    const yyyy = date.getFullYear()
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    date = yyyy + '-' + mm + '-' + dd
     if (err) return console.error(err)
-    return res.render('edit', { record })
+    return res.render('edit', { record, date })
   })
 })
 

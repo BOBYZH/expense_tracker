@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const Schema = mongoose.Schema
+const manyValidators = [
+  { validator: validator.isISO8601, message: '{VALUE} is not a valid date', isAsync: false },
+  //        { validator: function (i) { return /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(i) }, isAsync: false  }
+  { validator: validator.isBefore, msg: '{VALUE} is a future date', isAsync: false }
+]
+
 const recordSchema = new Schema({
   name: {
     type: String,
@@ -8,18 +14,13 @@ const recordSchema = new Schema({
   },
   category: {
     type: String,
-    required: true
+    required: true,
+    enum: ['domestic', 'traffic', 'recreation', 'diet', 'others']
   },
   date: {
     type: String,
     required: true,
-    validate: {
-      validator: function (i) {
-        return /[0-9]{4}-[0-9]{2}-[0-9]{2}/.test(i)
-      },
-      message: '{VALUE} is not a valid date',
-      isAsync: false
-    }
+    validate: manyValidators
   },
   month: {
     type: String,

@@ -18,9 +18,9 @@ router.get('/filter', authenticated, (req, res) => {
   const month = req.query.month
   console.log(category, month)
   let querys = {}
-  if (month === "") {
+  if (month === '') {
     querys = { category: category, userId: req.user._id }
-  } else if (category === "") {
+  } else if (category === '') {
     querys = { month: month, userId: req.user._id }
   } else {
     querys = { category: category, month: month, userId: req.user._id }
