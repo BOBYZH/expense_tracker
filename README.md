@@ -33,6 +33,7 @@ npm run seeder
 cp .env.template .env
 ```
 並在.env填入Facebook應用程式編號、應用程式密鑰
+
 8. 執行本專案：
 ```
 npm run dev
