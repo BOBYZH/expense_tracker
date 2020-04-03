@@ -27,7 +27,7 @@ npm run seeder
 | ------| -------------------| ---------| --------------------|
 | user1 | user1@example.com  | 12345678 | id #1, #2, #3 號記帳 |
 | user2 | user2@example.com  | 12345678 | id #4, #5, #6 號記帳 |
-6. 若要測試Faceboo登入功能，需到[Facebook for Developers](https://developers.facebook.com/)建立應用程式
+6. 若要測試Facebook登入功能，需到[Facebook for Developers](https://developers.facebook.com/)建立應用程式
 7. 在本專案根目錄依據".env.template"內容格式，新增".env"檔案(可使用終端機指令)，
 ```
 cp .env.template .env
