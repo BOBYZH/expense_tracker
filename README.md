@@ -3,6 +3,7 @@
 ### ALPHA Camp 學期三作業
 (老爸的私房錢 （又名【廣志の私帳】）=> 進階挑戰：老爸的私房錢升級)
 - 免安裝預覽連結：[https://expense-tracker-practice.herokuapp.com/](https://expense-tracker-practice.herokuapp.com/)
+- 新的SQL版：[連結](https://github.com/BOBYZH/SIII-Q3-expense_tracker_sql_version)
 
 ## 如何使用：
 0. 至少先在電腦上裝好Node.js、mongoDB Community Edition([依作業系統版本對照說明操作](https://docs.mongodb.com/manual/administration/install-community/))
