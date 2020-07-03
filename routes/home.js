@@ -6,6 +6,7 @@ const { authenticated } = require('../config/auth')
 
 router.get('/', authenticated, (req, res) => {
   Record.find({ userId: req.user._id })
+    .lean()
     .sort({ date: 'desc' })
     .exec((err, records) => {
       if (err) return console.error(err)
@@ -26,6 +27,7 @@ router.get('/filter', authenticated, (req, res) => {
     querys = { category: category, month: month, userId: req.user._id }
   }
   Record.find(querys)
+    .lean()
     .sort({ date: 'desc' })
     .exec((err, records) => {
       if (err) return res.sendStatus(500)

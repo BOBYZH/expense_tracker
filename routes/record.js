@@ -42,47 +42,53 @@ router.post('/', authenticated, (req, res) => {
 })
 
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
-    let date = new Date()
-    let dd = date.getDate()
-    let mm = date.getMonth() + 1 // January is 0!
-    const yyyy = date.getFullYear()
-    if (dd < 10) {
-      dd = '0' + dd
-    }
-    if (mm < 10) {
-      mm = '0' + mm
-    }
-    date = yyyy + '-' + mm + '-' + dd
-    if (err) return console.error(err)
-    return res.render('edit', { record, date })
-  })
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
+    .lean()
+    .exec((err, record) => {
+      let date = new Date()
+      let dd = date.getDate()
+      let mm = date.getMonth() + 1 // January is 0!
+      const yyyy = date.getFullYear()
+      if (dd < 10) {
+        dd = '0' + dd
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      date = yyyy + '-' + mm + '-' + dd
+      if (err) return console.error(err)
+      return res.render('edit', { record, date })
+    })
 })
 
 router.put('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
-    if (err) return console.error(err)
-    record.name = req.body.name
-    record.category = req.body.category
-    record.date = req.body.date
-    record.month = req.body.date.substring(5, 7)
-    record.amount = req.body.amount
-    record.merchant = req.body.merchant
-    record.save(err => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
+    .lean()
+    .exec((err, record) => {
       if (err) return console.error(err)
-      return res.redirect('/')
+      record.name = req.body.name
+      record.category = req.body.category
+      record.date = req.body.date
+      record.month = req.body.date.substring(5, 7)
+      record.amount = req.body.amount
+      record.merchant = req.body.merchant
+      record.save(err => {
+        if (err) return console.error(err)
+        return res.redirect('/')
+      })
     })
-  })
 })
 
 router.delete('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
-    if (err) return console.error(err)
-    record.remove(err => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
+    .lean()
+    .exec((err, record) => {
       if (err) return console.error(err)
-      return res.redirect('/')
+      record.remove(err => {
+        if (err) return console.error(err)
+        return res.redirect('/')
+      })
     })
-  })
 })
 
 module.exports = router
